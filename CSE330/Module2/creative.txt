@@ -1,0 +1,12 @@
+Sean McManus 431817
+Michelle Yuan 428978
+http://ec2-54-191-137-146.us-west-2.compute.amazonaws.com/~smcmanus/index.php
+Creative portion: Adding new users is enabled on the home page. Entering a new valid username creates an uploads folder
+for the user and allows them to login. 
+Sharing files between users. A user can supply the username of another user and a file in their own folder to copy to the other
+users folder.
+
+Valid usernames(right now): 
+sean_mcmanus 
+michelle_yuan
+peterpiper

@@ -1,0 +1,9 @@
+div	{
+	text-align: center;
+	width: 10em;
+	background: blue;
+	color: green;
+	border: 0.25em solid black;
+	font-size: 1.75em;
+	box-shadow: 20px 20px 5px #888888;
+}
