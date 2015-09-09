@@ -1,0 +1,67 @@
+body {
+				background: AliceBlue;
+				font: 12px/16px Verdana, sans-serif;
+				margin: auto;
+			}
+
+			.weekday {
+				display: inline;
+				padding-right: 110px;
+			}
+
+			#labels {
+				background-color: #fff;
+				padding: 1px;
+				opacity: 0.9;
+			}
+
+			.out {
+				font-size: 18px;
+				font-weight: bold;
+				text-align: center;
+			}
+
+			button {
+				padding: 5px;
+				border: 1 px solid #fff;
+				box-shadow: none;
+				background-color: #BDADA0;
+				-webkit-transition: all 0.7s ease;-moz-transition: all 0.7s ease;-o-transition: all 0.7s ease;
+			}
+
+			button:hover {
+				background-color: #fff;
+				-webkit-transition: all 0.7s ease;-moz-transition: all 0.7s ease;-o-transition: all 0.7s ease;
+			}
+
+			div div{
+				font: 12px/16px Verdana, sans-serif;
+				width: 1120px;
+				height: 900px;
+			}
+
+			.box {
+				font: 12px/16px Verdana, sans-serif;
+				width: auto;
+				height: auto;
+
+			}
+
+			#notifications {
+				height:auto;
+				width:1050px;
+			}
+
+			#calendeer {
+				padding: 10px;
+				margin: auto;
+				background-color: #fff;
+			}
+
+			div div div div{
+				padding: 5px;
+				width: 150px;
+				height: 150px;
+				outline: 1px solid #4A4A4A;
+				float: left;
+			}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head><title>JS Calculator</title>
+	</head>
+	<body>
+		First Number:<br>
+		<input type = "text" id="one">
+		<br>
+		Second Number:<br>
+		<input type = "text" id="two">
+		<br>
+		<input type = "radio" name = "ops" id = "add" value = "add" checked>Addition
+		<input type = "radio" name = "ops" id = "subtract" value = "subtract">Subtraction
+		<br>
+		<input type = "radio" name = "ops" id = "multiply" value = "multiply">Multiplication
+		<input type = "radio" name = "ops" id = "divide" value = "divide">Division
+		<p id='out'></p>
+	</body>
+	<script>
+		var math = function() {
+			if(document.getElementById('one').value != "" && document.getElementById('two').value != ""){
+				if(document.getElementById('add').checked) {
+					var one = Number(document.getElementById('one').value);
+					var two = Number(document.getElementById('two').value);
+					document.getElementById("out").innerHTML = one + two;
+				}else if(document.getElementById('subtract').checked) {
+					var one = document.getElementById('one').value;
+					var two = document.getElementById('two').value;
+					document.getElementById("out").innerHTML = one - two;
+				}else if(document.getElementById('multiply').checked) {
+					var one = document.getElementById('one').value;
+					var two = document.getElementById('two').value;
+					document.getElementById("out").innerHTML = one * two;
+				}else if(document.getElementById('divide').checked) {
+					var one = document.getElementById('one').value;
+					var two = document.getElementById('two').value;
+					if(two == 0){
+						document.getElementById("out").innerHTML = "Can't Divide by 0";
+					} else { document.getElementById("out").innerHTML = one / two;
+					}
+				}
+			} else {
+				document.getElementById("out").innerHTML = "";
+			}
+		}
+		document.getElementById("one").addEventListener("keyup", math, false);
+		document.getElementById("two").addEventListener("keyup", math, false);
+		document.getElementById("add").addEventListener("click", math, false);
+		document.getElementById("subtract").addEventListener("click", math, false);
+		document.getElementById("multiply").addEventListener("click", math, false);
+		document.getElementById("divide").addEventListener("click", math, false);
+	</script>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat Room</title>
+		<script src="/socket.io/socket.io.js"></script>
+		<style type="text/css">
+			body{
+				background-color: aqua;
+			}
+			#info {
+           		z-index: 1;
+            	float: right;
+            	width: 20%;
+            	right: 0%;
+            	height: 70%;
+            	top: 0%;
+            	position: fixed;
+            	background-color: gray;
+        	}
+        	#new_room_form{
+        		background-color: aquamarine;
+			}
+			#room_controls{
+				background-color: cyan;
+			}
+		</style>
+	</head>
+	<body>
+		<p id = "heading"></p>
+		<form id="send_message">
+        	<input id="message_input" autocomplete="off">
+        	Chat:
+        	<input type='radio' name='input' checked id='text'>
+        	Image:
+   	 		<input type='radio' name='input' id='image'> 
+   	 		Youtube Video:
+    		<input type='radio' name='input' id='video'>
+        	<input type="submit" value="Send">
+    	</form>
+    	<div id='info'><p>In this room:</p><div id="users"></div><br><p>Room List:</p><div id="rooms"></div><br><br><br><div id ="new_room_form">
+    			<br><strong>New Room: </strong>
+    			<br>Name: <input type='text' id ='new_room' autocomplete="off"><br>
+    			Password: <input type='password' id='room_password'><br> Public:
+   	 			<input type='radio' name='password' checked id='public'> Private:
+    			<input type='radio' name='password' id='private'>
+    			<button onclick = "create_new_room()">Create Room</button>
+    		</div>
+    		<div id="room_controls">
+    			<strong>Room Controls: </strong><br>
+				<button onclick = "switch_room()">Switch Room</button>
+				<button onclick = "ban_user()">Permanent Ban</button>
+				<button onclick = "private_message()">Send a Private Message</button>
+				<button onclick = "kick_user()">Kick User</button>
+			</div>
+    	</div>
+		<div id="chatlog"></div>
+		<script type ="text/javascript">
+			var user = "";
+			var current_room = "general";
+			var socketio = io.connect();
+			socketio.on("message_to_client",function(data) {
+				var timestamp = new Date(data["date"]);
+				
+				//Append an HR thematic break and the escaped HTML of the new message
+				document.getElementById("chatlog").appendChild(document.createElement("hr"));
+				document.getElementById("chatlog").appendChild(document.createTextNode(timestamp.toLocaleString() + ", " + data.username + ": " + data['message']));
+			});
+			socketio.on("image_to_client",function(data) {
+				var image = document.createElement('img');
+				var timestamp = new Date(data["date"]);
+				image.src = data['url'];
+				image.alt = "Sorry, not a valid image";
+				//Append an HR thematic break and the escaped HTML of the new message
+				document.getElementById("chatlog").appendChild(document.createElement("hr"));
+				document.getElementById("chatlog").appendChild(document.createTextNode(timestamp.toLocaleString() + ", " + data.username + ": "));
+				document.getElementById("chatlog").appendChild(image);
+			});
+			socketio.on("video_to_client",function(data) {
+				var iframe = document.createElement('iframe');
+				var url = data['url'];
+				var timestamp = new Date(data["date"]);
+				if(url.indexOf('watch') != -1){
+					var end = url.substring(32, url.length);
+					url = "https://www.youtube.com/embed/" + end;
+				}
+				iframe.src = url;
+				iframe.width = 460;
+				iframe.height = 315;
+				//Append an HR thematic break and the escaped HTML of the new message
+				document.getElementById("chatlog").appendChild(document.createElement("hr"));
+				document.getElementById("chatlog").appendChild(document.createTextNode(timestamp.toLocaleString() + ", " + data.username + ": "));
+				document.getElementById("chatlog").appendChild(iframe);
+			});
+			socketio.on("update_user_list",function(data) {
+				var html = "";
+				for (var key in data.users) {
+					html += data.users[key] + "<br>";
+				}
+				document.getElementById("users").innerHTML = html;
+			});
+			socketio.on("update_room_list",function(data) {
+				var html = "";
+				for (var key in data.rooms) {
+					html += data.rooms[key] + "<br>";
+				}
+				document.getElementById("rooms").innerHTML = html;
+			});
+			socketio.on("logged_in",function(data) {
+				//Append an HR thematic break and the escaped HTML of the new message
+				if(data.success){
+					user = data.user;
+					document.getElementById("heading").innerHTML = "Welcome " + user + ": You are in " + current_room + "!";
+					alert("Successful login");
+				}
+			});
+			socketio.on("room_created",function(data) {
+				//Append an HR thematic break and the escaped HTML of the new message
+				if(data.success){
+					alert(data.message);
+				}
+			});
+			socketio.on("sent",function(data) {
+				if(data.success){
+					alert(data.message);
+				}
+			});	
+			socketio.on("incoming_mail",function(data) {
+				alert(data.message);
+			});
+			socketio.on("switch_is_private",function(data) {
+				var password = prompt("This room requires a password");
+				socketio.emit("private_switch", {user:data.user, old_room:current_room, new_room:data.new_room, password:password});
+			});
+			socketio.on("switch_success",function(data) {
+				current_room = data.new_room
+				alert("Room successfully switched");
+				document.getElementById("chatlog").innerHTML = "";
+				document.getElementById("heading").innerHTML = "Welcome " + user + ": You are in " + current_room + "!";
+			});
+			socketio.on("404_room_not_found",function() {
+				alert("This room does not exist");
+			});
+			socketio.on("bad_password",function() {
+				alert("That password is incorrect");
+			});
+			socketio.on("access_denied",function() {
+				alert("You are banned from this room");
+			});
+			socketio.on("not_here",function() {
+				alert("This person does not exist or is not in this room");
+			});
+			socketio.on("no_authority",function() {
+				alert("You are not the admin and cannot issue bans");
+			});
+			socketio.on("ban_success",function() {
+				alert("Ban successful");
+			});
+			socketio.on("banned",function(data) {
+				alert("You have been banned from " + data.room);
+				current_room = "general";
+				document.getElementById("chatlog").innerHTML = "";
+				document.getElementById("heading").innerHTML = "Welcome " + user + ": You are in " + current_room + "!";
+			});
+			socketio.on("kick_success",function() {
+				alert("Kick successful");
+			});
+			socketio.on("kicked",function(data) {
+				alert("You have been kicked from " + data.room + ". You may rejoin, but you risk being kicked permanently");
+				current_room = "general";
+				document.getElementById("chatlog").innerHTML = "";
+				document.getElementById("heading").innerHTML = "Welcome " + user + ": You are in " + current_room + "!";
+			});
+			function sendMessage(){	//send three different types of messages
+				var msg = document.getElementById("message_input").value;
+        		document.getElementById("message_input").value = '';
+        		if (msg === '') {
+            		alert("you can't send blank messages");
+        		} else {
+        			if(document.getElementById('text').checked){
+            			socketio.emit("message_to_server", {
+                			message: msg,
+                			username: user
+            			});
+            		} else if(document.getElementById('image').checked){
+            			socketio.emit("image_to_server", {
+                			image: msg,
+                			username: user
+            			});
+            		} else if(document.getElementById('video').checked){
+            			socketio.emit("video_to_server", {
+                			video: msg,
+                			username: user
+            			});
+            		}
+        		}
+			}
+			document.addEventListener("DOMContentLoaded", function() {	//binds the message send button to the enter key
+    	   		document.getElementById("send_message").addEventListener("submit", function(e) {
+        			    e.preventDefault();
+         				sendMessage(); 
+        		});    
+    		});
+    		function private_message() {
+    			var to_user = prompt("Who is the message going to?");
+    			var message = prompt("Say what you need to say");
+    			if(user == to_user){
+    				alert('Talking to yourself? See a doctor');
+    			} else {
+    				socketio.emit("private_message", {from:user, to: to_user, message:message, room:current_room});
+    			}
+    		}
+    		function create_new_room() {
+				var name = document.getElementById('new_room').value;
+				var password = document.getElementById('room_password').value;
+				document.getElementById("new_room").value = '';
+				document.getElementById("room_password").value = '';
+				if(name != ""){
+					if(document.getElementById('public').checked){
+						socketio.emit("new_public_room", {name: name, creator: user});
+					} else {
+						if(password != ""){
+							socketio.emit("new_private_room", {name:name, creator:user, password:password});
+						} else {
+							alert('Room must have a password');
+						}
+					}
+				} else {
+					alert('Room must have a name');
+				}
+    		}
+    		function switch_room() {
+				var room_switch = prompt("Which room do you want to switch to?");
+				if(current_room == room_switch){
+					alert("You are already in this room");
+				} else {
+					socketio.emit("public_switch", {user:user, old_room:current_room, new_room:room_switch});
+				}
+				
+    		}
+    		function ban_user() {
+				var target = prompt("Who do you want to ban from this room?");
+				socketio.emit("initiate_ban", {banner:user, bannee:target, room:current_room});	
+    		}
+    		function kick_user() {
+				var target = prompt("Who do you want to temporarily kick from this room?");
+				socketio.emit("initiate_kick", {banner:user, bannee:target, room:current_room});	
+    		}
+    		function add_user() {
+        		socketio.on("connect", function() {
+         	   		user = prompt("Please enter a username to use our chat site.");
+         	   		// send the username that the user has added to the server if it is not blank
+         	   		if(user == "" || user == null){
+         	   			alert("You must have a name");
+         	   			user = prompt("Please enter a username to use our chat site.");
+         	   			if(user == "" || user == null){
+         	   				document.getElementsByTagName('body')[0].innerHTML = "Sorry, reload if you want to identify yourself"; //Blanks out the page if user wont enter a name
+         	   			}else {
+         	   				socketio.emit("user_login", {username: user});
+         	   			}
+         	   		} else {
+         	   			socketio.emit("user_login", {username: user});
+         	   		}
+        		});
+    		}
+   			add_user();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,6 @@
+Sean McManus 431817
+(I was on my own on this one, as I found out kinda late in the game..)
+ec2-54-191-137-146.us-west-2.compute.amazonaws.com:3456
+Creative portion:
+Timestamp is displayed next to each message sent by the users, with day month and time
+Users can share images and youtube videos in the chat by inputting urls. 

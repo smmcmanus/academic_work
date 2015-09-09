@@ -1,0 +1,495 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Class Planner</title>
+	<!-- <link rel="stylesheet" type="text/css" href="map.css"> -->
+	<style>
+	html, body {
+		  height: 100%;
+		  margin: 0;
+		}
+		div, hr{
+			height:1px;
+			}
+			
+		#panel {
+			z-index: 1;
+			float: right;
+			width: 20%;
+			right: 0%;
+			height: 100%;
+			top: 0%;
+			position: fixed;
+			background-color: gray;
+			overflow-y:auto
+		}
+		#panel2 {
+			z-index: 1;
+			float: left;
+			width: 23%;
+			left: 0%;
+			height: 27%;
+			bottom: 0%;
+			position: fixed;
+			background-color: gray;
+		}
+		#map{
+		  height: 100%;
+		  margin: 0;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="panel">
+		Welcome <%= user.username %>!<form action="/logout" method="get">
+			<input type="submit" value="Log Out">
+		</form>
+		<br>Your Classes:<br>
+	<% for(var i=0; i<classes.length; i++) {%>
+	<hr>
+   		<div class= "name"><%= classes[i].name %></div><br>
+   		<div><%= classes[i].time %></div><br>
+   		<div class= "bld"><%= classes[i].building %></div><br>
+   		<br>
+		<form action="/delete" method="post">
+   			<input type="hidden" name="dclass" value=<%= classes[i]._id %>  >
+   			<input type="submit" value="Delete">
+		</form>
+		<form action="/updateName" method="post">
+   			<input type="hidden" name="dclass" value=<%= classes[i]._id %>  >
+   			<input type ='text' name="name" autocomplete="off">
+   			<input type="submit" value="Update Name">
+		</form>
+		<form action="/updateTime" method="post">
+   			<input type="hidden" name="dclass" value=<%= classes[i]._id %>  >
+   			<input type="time" name="time">
+   			<input type="submit" value="Update Time">
+		</form>
+		<form action="/updateBuilding" method="post">
+   			<input type="hidden" name="dclass" value=<%= classes[i]._id %>  >
+			<select name="building">
+				<option value="olin">Olin Library</option>
+   	   			<option value="eads">Eads Hall</option>
+				<option value="ridgley_holmes">Ridgley/Holmes Lounge</option>
+				<option value="january">January Hall</option>
+				<option value="wilson">Wilson Hall</option>
+				<option value="mcdonnell_hall">McDonnell Hall</option>
+				<option value="monsanto">Monsanto Lab</option>
+				<option value="psych">Psychology Building</option>
+				<option value="brown">Brown School of Social Work</option>
+				<option value="sam_fox">Sam Fox School</option>
+				<option value="steinberg">Steinberg Hall</option>
+				<option value="bixby">Bixby Hall</option>
+				<option value="mildred_lane">Mildred Lane Kemper Art Museum</option>
+				<option value="green">Green Hall</option>
+				<option value="life_sci">Life Sciences Building</option>
+				<option value="rudolph">Rudolph Hall</option>
+				<option value="busch_lab">Busch Laboratory</option>
+				<option value="rebstock">Rebstock Hall</option>
+				<option value="brookings">Brookings Hall</option>
+				<option value="whitaker">Whitaker Hall</option>
+				<option value="brauer">Brauer Hall</option>
+				<option value="crow">Crow Hall</option>
+				<option value="sever">Sever Hall</option>
+				<option value="lopata">Lopata Hall</option>
+				<option value="urbauer">Urbauer Hall</option>
+				<option value="cupplesII">Cupples II</option>
+				<option value="jolley">Jolley Hall</option>
+				<option value="bryan">Bryan Hall</option>
+				<option value="louderman">Louderman Hall</option>
+				<option value="mcmillan_lab">McMillan Laboratory</option>
+				<option value="womens">Ann M. Olin Women's Building</option>
+				<option value="lab_sci">Laboratory Sciences</option>
+				<option value="mcmillan">McMillan Hall</option>
+				<option value="bauer">Bauer Hall</option>
+				<option value="knight">Knight Hall</option>
+				<option value="law">Anheuser-Busch Hall</option>
+				<option value="frat">Upper Fraternity Row</option>
+				<option value="seigle">Seigle Hall</option>
+				<option value="ac">Athletic Complex</option>
+				<option value="village">The Village Residential Housing</option>
+				<option value="simon">Simon Hall</option>
+				<option value="duc">Danforth University Center</option>
+				<option value="malinkrodt">Malinkrodt Center</option>
+				<option value="umrath">Umrath Hall</option>
+				<option value="graham">Graham Chapel</option>
+				<option value="busch">Busch Hall</option>
+				<option value="duncker">Duncker Hall</option>
+				<option value="cupplesI">Cupples I</option>
+				<option value="sofo">South Forty</option>
+			</select>
+   			<input type="submit" value="Update Building">
+		</form>
+		<br>
+	<% } %>
+	<hr>
+		Add new class
+		<br>
+		<form action="/add" method="post">
+			<input type="hidden" name="user" value=<%= user.username %>  >
+			Name: <input type ='text' name="name" autocomplete="off">
+			<br>
+			Time: <input type="time" name="time">
+			<br>
+			Building:
+			<select name="building">
+				<option value="olin">Olin Library</option>
+   	   			<option value="eads">Eads Hall</option>
+				<option value="ridgley_holmes">Ridgley/Holmes Lounge</option>
+				<option value="january">January Hall</option>
+				<option value="wilson">Wilson Hall</option>
+				<option value="mcdonnell_hall">McDonnell Hall</option>
+				<option value="monsanto">Monsanto Lab</option>
+				<option value="psych">Psychology Building</option>
+				<option value="brown">Brown School of Social Work</option>
+				<option value="sam_fox">Sam Fox School</option>
+				<option value="steinberg">Steinberg Hall</option>
+				<option value="bixby">Bixby Hall</option>
+				<option value="mildred_lane">Mildred Lane Kemper Art Museum</option>
+				<option value="green">Green Hall</option>
+				<option value="life_sci">Life Sciences Building</option>
+				<option value="rudolph">Rudolph Hall</option>
+				<option value="busch_lab">Busch Laboratory</option>
+				<option value="rebstock">Rebstock Hall</option>
+				<option value="brookings">Brookings Hall</option>
+				<option value="whitaker">Whitaker Hall</option>
+				<option value="brauer">Brauer Hall</option>
+				<option value="crow">Crow Hall</option>
+				<option value="sever">Sever Hall</option>
+				<option value="lopata">Lopata Hall</option>
+				<option value="urbauer">Urbauer Hall</option>
+				<option value="cupplesII">Cupples II</option>
+				<option value="jolley">Jolley Hall</option>
+				<option value="bryan">Bryan Hall</option>
+				<option value="louderman">Louderman Hall</option>
+				<option value="mcmillan_lab">McMillan Laboratory</option>
+				<option value="womens">Ann M. Olin Women's Building</option>
+				<option value="lab_sci">Laboratory Sciences</option>
+				<option value="mcmillan">McMillan Hall</option>
+				<option value="bauer">Bauer Hall</option>
+				<option value="knight">Knight Hall</option>
+				<option value="law">Anheuser-Busch Hall</option>
+				<option value="frat">Upper Fraternity Row</option>
+				<option value="seigle">Seigle Hall</option>
+				<option value="ac">Athletic Complex</option>
+				<option value="village">The Village Residential Housing</option>
+				<option value="simon">Simon Hall</option>
+				<option value="duc">Danforth University Center</option>
+				<option value="malinkrodt">Malinkrodt Center</option>
+				<option value="umrath">Umrath Hall</option>
+				<option value="graham">Graham Chapel</option>
+				<option value="busch">Busch Hall</option>
+				<option value="duncker">Duncker Hall</option>
+				<option value="cupplesI">Cupples I</option>
+				<option value="sofo">South Forty</option>
+			</select>
+			<input type="submit" value="Add">
+		</form>
+		
+		<hr>
+		<button onCLick="classRoute()">See Class Route</button>
+		<hr>
+		</div>
+		<div id="panel2">
+		<button onClick="findMe()" >Find Me!</button><br>
+    	Campus Navigation
+    	<br>
+    	Building 1: <select id="start" name="b1">
+    		<option value="loc">My Location</option>
+			<option value="olin">Olin Library</option>
+   	   		<option value="eads">Eads Hall</option>
+   	   		<option value="ridgley_holmes">Ridgley/Holmes Lounge</option>
+   	   		<option value="january">January Hall</option>
+   	   		<option value="wilson">Wilson Hall</option>
+   	   		<option value="mcdonnell_hall">McDonnell Hall</option>
+   	   		<option value="monsanto">Monsanto Lab</option>
+   	   		<option value="psych">Psychology Building</option>
+   	   		<option value="brown">Brown School of Social Work</option>
+   	   		<option value="sam_fox">Sam Fox School</option>
+   	   		<option value="steinberg">Steinberg Hall</option>
+   	   		<option value="bixby">Bixby Hall</option>
+   	   		<option value="mildred_lane">Mildred Lane Kemper Art Museum</option>
+   	   		<option value="green">Green Hall</option>
+   	   		<option value="life_sci">Life Sciences Building</option>
+   	   		<option value="rudolph">Rudolph Hall</option>
+   	   		<option value="busch_lab">Busch Laboratory</option>
+   	   		<option value="rebstock">Rebstock Hall</option>
+   	   		<option value="brookings">Brookings Hall</option>
+   	   		<option value="whitaker">Whitaker Hall</option>
+   	   		<option value="brauer">Brauer Hall</option>
+   	   		<option value="crow">Crow Hall</option>
+   	   		<option value="sever">Sever Hall</option>
+   	   		<option value="lopata">Lopata Hall</option>
+   	   		<option value="urbauer">Urbauer Hall</option>
+   	   		<option value="cupplesII">Cupples II</option>
+   	   		<option value="jolley">Jolley Hall</option>
+   	   		<option value="bryan">Bryan Hall</option>
+   	   		<option value="louderman">Louderman Hall</option>
+   	   		<option value="mcmillan_lab">McMillan Laboratory</option>
+   	   		<option value="womens">Ann M. Olin Women's Building</option>
+   	   		<option value="lab_sci">Laboratory Sciences</option>
+   	   		<option value="mcmillan">McMillan Hall</option>
+   	   		<option value="bauer">Bauer Hall</option>
+   	   		<option value="knight">Knight Hall</option>
+   	   		<option value="law">Anheuser-Busch Hall</option>
+   	   		<option value="frat">Upper Fraternity Row</option>
+   	   		<option value="seigle">Seigle Hall</option>
+   	   		<option value="ac">Athletic Complex</option>
+   	   		<option value="village">The Village Residential Housing</option>
+   	   		<option value="simon">Simon Hall</option>
+   	   		<option value="duc">Danforth University Center</option>
+   	   		<option value="malinkrodt">Malinkrodt Center</option>
+   	   		<option value="umrath">Umrath Hall</option>
+   	   		<option value="graham">Graham Chapel</option>
+   	   		<option value="busch">Busch Hall</option>
+   	   		<option value="duncker">Duncker Hall</option>
+   	   		<option value="cupplesI">Cupples I</option>
+   	   		<option value="sofo">South Forty</option>
+
+    	</select><br> Building 2: <select id="end" name="b2">
+			<option value="olin">Olin Library</option>
+   	   		<option value="eads">Eads Hall</option>
+   	   		<option value="ridgley_holmes">Ridgley/Holmes Lounge</option>
+   	   		<option value="january">January Hall</option>
+   	   		<option value="wilson">Wilson Hall</option>
+   	   		<option value="mcdonnell_hall">McDonnell Hall</option>
+   	   		<option value="monsanto">Monsanto Lab</option>
+   	   		<option value="psych">Psychology Building</option>
+   	   		<option value="brown">Brown School of Social Work</option>
+   	   		<option value="sam_fox">Sam Fox School</option>
+   	   		<option value="steinberg">Steinberg Hall</option>
+   	   		<option value="bixby">Bixby Hall</option>
+   	   		<option value="mildred_lane">Mildred Lane Kemper Art Museum</option>
+   	   		<option value="green">Green Hall</option>
+   	   		<option value="life_sci">Life Sciences Building</option>
+   	   		<option value="rudolph">Rudolph Hall</option>
+   	   		<option value="busch_lab">Busch Laboratory</option>
+   	   		<option value="rebstock">Rebstock Hall</option>
+   	   		<option value="brookings">Brookings Hall</option>
+   	   		<option value="whitaker">Whitaker Hall</option>
+   	   		<option value="brauer">Brauer Hall</option>
+   	   		<option value="crow">Crow Hall</option>
+   	   		<option value="sever">Sever Hall</option>
+   	   		<option value="lopata">Lopata Hall</option>
+   	   		<option value="urbauer">Urbauer Hall</option>
+   	   		<option value="cupplesII">Cupples II</option>
+   	   		<option value="jolley">Jolley Hall</option>
+   	   		<option value="bryan">Bryan Hall</option>
+   	   		<option value="louderman">Louderman Hall</option>
+   	   		<option value="mcmillan_lab">McMillan Laboratory</option>
+   	   		<option value="womens">Ann M. Olin Women's Building</option>
+   	   		<option value="lab_sci">Laboratory Sciences</option>
+   	   		<option value="mcmillan">McMillan Hall</option>
+   	   		<option value="bauer">Bauer Hall</option>
+   	   		<option value="knight">Knight Hall</option>
+   	   		<option value="law">Anheuser-Busch Hall</option>
+   	   		<option value="frat">Upper Fraternity Row</option>
+   	   		<option value="seigle">Seigle Hall</option>
+   	   		<option value="ac">Athletic Complex</option>
+   	   		<option value="village">The Village Residential Housing</option>
+   	   		<option value="simon">Simon Hall</option>
+   	   		<option value="duc">Danforth University Center</option>
+   	   		<option value="malinkrodt">Malinkrodt Center</option>
+   	   		<option value="umrath">Umrath Hall</option>
+   	   		<option value="graham">Graham Chapel</option>
+   	   		<option value="busch">Busch Hall</option>
+   	   		<option value="duncker">Duncker Hall</option>
+   	   		<option value="cupplesI">Cupples I</option>
+   	   		<option value="sofo">South Forty</option>
+    	</select>
+		<br>
+		<button onClick="calcRoute()" >Get Directions</button><br>
+		<b id="total"></b>
+    </div>
+	<div id="map"></div>
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script>
+		var buildings = {"olin": {lat: 38.648603, long: -90.307700},
+			'eads': {lat: 38.648170, long: -90.306705},
+			'ridgley_holmes': {lat: 38.648122, long: -90.306168},
+			'january': {lat: 38.647719, long: -90.306292},
+			'wilson': {lat: 38.647550, long: -90.306979},
+			'mcdonnell_hall': {lat: 38.647168, long: -90.306649},
+			'monsanto': {lat: 38.647416, long: -90.307573},
+			'psych': {lat: 38.647010, long: -90.307455},
+			'brown': {lat: 38.647152, long: -90.305698},
+			'sam_fox': {lat: 38.646661, long: -90.303401},
+			'steinberg': {lat: 38.646580, long: -90.302765},
+			'bixby': {lat: 38.646552, long: -90.302065},
+			'mildred_lane': {lat: 38.647128, long: -90.302677},
+			'green': {lat: 38.649000, long: -90.301531},
+			'brauer': {lat: 38.648937, long: -90.302271},
+			'whitaker': {lat: 38.649117, long: -90.303105},
+			'brookings': {lat: 38.648022, long: -90.305067},
+			'rebstock': {lat: 38.647625, long: -90.308021},
+			'busch_lab': {lat: 38.647713, long: -90.308603},
+			'life_sci': {lat: 38.647491, long: -90.308573},
+			'rudolph': {lat: 38.649109, long: -90.304545},
+			'crow': {lat: 38.649205, long: -90.305253},
+			'sever': {lat: 38.648820, long: -90.306398},
+			'lopata': {lat: 38.649094, long: -90.306170},
+			'urbauer': {lat: 38.649349, long: -90.306077},
+			'cupplesII': {lat: 38.649153, long: -90.306820},
+			'jolley': {lat: 38.649452, long: -90.306605},
+			'bryan': {lat: 38.649484, long: -90.307026},
+			'louderman': {lat: 38.649253, long: -90.307758},
+			'mcmillan_lab': {lat: 38.649615, long: -90.307668},
+			'womens': {lat: 38.649331, long: -90.308428},
+			'lab_sci': {lat: 38.649504, long: -90.309056},
+			'mcmillan_hall': {lat: 38.649603, long: -90.309860},
+			'bauer': {lat: 38.649527, long: -90.310687},
+			'knight': {lat: 38.649638, long: -90.311405},
+			'law': {lat: 38.649699, long: -90.312097},
+			'frat': {lat: 38.649628, long: -90.313326},
+			'seigle': {lat: 38.649012, long: -90.312532},
+			'ac': {lat: 38.649209, long: -90.314935},
+			'village': {lat: 38.650864, long: -90.313988},
+			'simon': {lat: 38.648097, long: -90.311322},
+			'duc': {lat: 38.647752, long: -90.310495},
+			'malinkrodt': {lat: 38.647507, long: -90.309688},
+			'umrath': {lat: 38.648014, long: -90.309497},
+			'graham': {lat: 38.648230, long: -90.308918},
+			'busch_hall': {lat: 38.647485, long: -90.305722},
+			'duncker': {lat: 38.648524, long: -90.306058},
+			'cupplesI': {lat: 38.648662, long: -90.305526},
+			'sofo': {lat:38.644292, long: -90.314392}};
+		var map;
+		var rendererOptions = {
+  			draggable: true
+		};
+		var directionsService = new google.maps.DirectionsService();
+		var directionsDisplay;
+		function initialize() {
+			directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+			var mapOptions = {
+				center: new google.maps.LatLng(38.648603, -90.307700),
+				zoom: 16,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById('map'), mapOptions);
+			directionsDisplay.setMap(map);
+			google.maps.event.addListener(directionsDisplay, 'directions_changed', function() {
+    			computeTotalDistance(directionsDisplay.getDirections());
+  			});
+			addMarker();
+		
+		}
+		function addMarker() {
+			var num = document.getElementById('len');
+			var classes = document.getElementsByClassName("bld");
+			var names = document.getElementsByClassName("name");
+			var i = 0;
+			Array.prototype.forEach.call(classes, function(bld) {
+    			var myLatlng = new google.maps.LatLng(buildings[bld.innerHTML].lat,buildings[bld.innerHTML].long);
+				var marker = new google.maps.Marker({
+				  position: myLatlng,
+				  map: map,
+				  title: names[i].innerHTML
+				});
+				i++;
+			});
+		}
+		function classRoute() {
+			
+			var classes = document.getElementsByClassName("bld");
+			var len = classes.length;
+			if(len > 1){
+				var start = new google.maps.LatLng(buildings[classes[0].innerHTML].lat, buildings[classes[0].innerHTML].long);
+				var end = new google.maps.LatLng(buildings[classes[len-1].innerHTML].lat, buildings[classes[len-1].innerHTML].long);
+				var waypts = [];
+				for (var i = 1; i < len-1 ; i++) {
+					waypts.push({
+						location:new google.maps.LatLng(buildings[classes[i].innerHTML].lat, buildings[classes[i].innerHTML].long),
+						stopover:true});
+				}
+				if(len == 2){
+					var request = {
+						origin: start,
+						destination: end,
+						travelMode: google.maps.TravelMode.WALKING
+					};
+				} else {
+					var request = {
+						origin: start,
+						destination: end,
+						waypoints: waypts,
+						optimizeWaypoints: false,
+						travelMode: google.maps.TravelMode.WALKING
+					};
+				}
+				directionsService.route(request, function(response, status) {
+					if (status == google.maps.DirectionsStatus.OK) {
+						directionsDisplay.setDirections(response);
+						computeTotalDistance(directionsDisplay.getDirections());
+					}
+				});
+			}
+		
+		}
+		function findMe() {
+			if(navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position) {
+				  var pos = new google.maps.LatLng(position.coords.latitude,
+												   position.coords.longitude);
+				  var marker = new google.maps.Marker({
+				 	 position: pos,
+				 	 map: map,
+				 	 title: "You are here"
+				});					   
+				  map.setCenter(pos);
+				});
+			}
+		}
+		function calcRoute() {
+		  var start = String(document.getElementById('start').value);
+		  var end = String(document.getElementById('end').value);
+		  var ell = new google.maps.LatLng(buildings[end].lat, buildings[end].long);
+		  if(start != 'loc'){
+		  	var sll = new google.maps.LatLng(buildings[start].lat ,buildings[start].long);
+		  
+		  	var request = {
+      				origin:sll,
+      				destination:ell,
+      				travelMode: google.maps.TravelMode.WALKING
+ 				};
+  			directionsService.route(request, function(response, status) {
+    			if (status == google.maps.DirectionsStatus.OK) {
+      				directionsDisplay.setDirections(response);
+      				computeTotalDistance(directionsDisplay.getDirections());
+    			}
+			});
+			} else {
+				if(navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+					  var pos = new google.maps.LatLng(position.coords.latitude,
+													   position.coords.longitude);
+
+					var request = {
+      					origin:pos,
+      					destination:ell,
+      					travelMode: google.maps.TravelMode.WALKING
+ 					};
+  					directionsService.route(request, function(response, status) {
+    				if (status == google.maps.DirectionsStatus.OK) {
+      					directionsDisplay.setDirections(response);
+      					computeTotalDistance(directionsDisplay.getDirections());
+    				}
+				});	  
+  			});
+  			}
+  			}	
+		}
+		function computeTotalDistance(result) {
+		  var total = 0;
+		  var myroute = result.routes[0];
+		  for (var i = 0; i < myroute.legs.length; i++) {
+			total += myroute.legs[i].distance.value;
+		  }
+		  total = total / 1000.0;
+		  document.getElementById('total').innerHTML = "Travel Distance: " + total + ' km';
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+</body>
+</html>

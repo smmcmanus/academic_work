@@ -1,0 +1,6 @@
+Sean McManus 431817
+Michelle Yuan 428978
+http://ec2-54-191-137-146.us-west-2.compute.amazonaws.com/~smcmanus/calendar.php
+Creative portion:
+Share Events with add/reject option: Can share events with another user, but instead of sharing events directly, it will send other user a notification with an option to add or delete invitation.
+Email: When registering, users will add in their email and the site will shoot them an email thanking them and explaining the calendar's basic functionality. 

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<style>
+		body{
+			width: 640px; /* how wide to make your web page */
+			background-color: #B2D1FF; /* what color to make the background */
+			margin: 40px;
+			padding: 0;
+			font:14px/32px Verdana, sans-serif; /* default font */
+	}
+	div#main{
+		background-color: white;
+		width: auto;
+		padding: 10px;
+		border: 5px solid gray;
+	}
+	div#login{
+		background-color: white;
+		width: auto;
+		padding: 0;
+	}
+	</style>
+		<title>Login Page</title>
+	</head>
+	<body>
+		To plan your week, please log in!
+		<br>
+		<div id="main">
+		<form method="post" action="/login">
+			<label>Username:</label><input type="text" name="username" value="" autocomplete="off" required>
+			<br>
+			<label>Password:</label><input type="password" name="password" value=""  required>
+			<br>
+			<input type="submit" name="Login">
+		</form>
+		<br><br>
+		New here? Register below!
+		<br>
+		<form action="/register" method="post">
+	    	<label>Username:</label><input type="text" name="username" autocomplete="off"/><br/>
+	        <label>Password:</label>
+	        <input type="password" name="password" /><br>
+	        <input type="submit" value="Sign Up"/>
+		</form>
+		</div>
+	</body>
+</html>

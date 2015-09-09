@@ -1,0 +1,7 @@
+Sean McManus 431817
+Michelle Yuan 428978
+http://ec2-54-191-137-146.us-west-2.compute.amazonaws.com/~smcmanus/homepage.php
+Creative portion:
+User Profile - Give pages with all articles submitted only by one user
+Has user profile pictures
+Articles have timestamp, upvote, downvote function.

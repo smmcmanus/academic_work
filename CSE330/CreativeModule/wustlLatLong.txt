@@ -1,0 +1,100 @@
+Olin Library: 38.648603, -90.307700
+Eads Hall: 38.648170, -90.306705
+Ridgley/Holmes Lounge: 38.648122, -90.306168
+January Hall: 38.647719, -90.306292
+Wilson Hall: 38.647550, -90.306979
+McDonnell Hall: 38.647168, -90.306649
+Monsanto Lab: 38.647416, -90.307573
+Psychology Building: 38.647010, -90.307455
+Brown School of Social Work: 38.647152, -90.305698
+Sam Fox School: 38.646661, -90.303401
+Steinberg Hall: 38.646580, -90.302765
+Bixby Hall: 38.646552, -90.302065
+Mildred Lane Kemper Art Museum: 38.647128, -90.302677
+Green Hall: 38.649000, -90.301531
+Brauer Hall: 38.648937, -90.302271
+Whitaker Hall: 38.649117, -90.303105
+Brookings Hall: 38.648022, -90.305067
+Rebstock Hall: 38.647625, -90.308021
+Busch Laboratory: 38.647713, -90.308603
+Life Sciences Building: 38.647491, -90.308573
+Rudolph Hall: 38.649109, -90.304545
+Crow Hall: 38.649205, -90.305253
+Sever Hall: 38.648820, -90.306398
+Lopata Hall: 38.649094, -90.306170
+Urbauer Hall: 38.649349, -90.306077
+Cupples II: 38.649153, -90.306820
+Jolley Hall: 38.649452, -90.306605
+Bryan Hall: 38.649484, -90.307026
+Louderman Hall: 38.649253, -90.307758
+McMillan Laboratory: 38.649615, -90.307668
+Ann M. Olin Women's Building: 38.649331, -90.308428
+Laboratory Sciences: 38.649504, -90.309056
+McMillan Hall: 38.649603, -90.309860
+Bauer Hall: 38.649527, -90.310687
+Knight Hall: 38.649638, -90.311405
+Anheuser-Busch Hall: 38.649699, -90.312097
+Upper Fraternity Row: 38.649628, -90.313326
+Seigle Hall: 38.649012, -90.312532
+Athletic Complex: 38.649209, -90.314935
+The Village Residential Housing: 38.650864, -90.313988
+Simon Hall: 38.648097, -90.311322
+Danforth University Center: 38.647752, -90.310495
+Malinkrodt Center: 38.647507, -90.309688
+Umrath Hall: 38.648014, -90.309497
+Graham Chapel: 38.648230, -90.308918
+Busch Hall: 38.647485, -90.305722
+Duncker Hall: 38.648524, -90.306058
+Cupples I: 38.648662, -90.305526
+South Forty: 38.644292, -90.314392
+
+{'olin': {lat: 38.648603, long: -90.307700},
+'eads': {lat: 38.648170, long: -90.306705},
+'ridgley_holmes': {lat: 38.648122, long: -90.306168},
+'january': {lat: 38.647719, long: -90.306292},
+'wilson': {lat: 38.647550, long: -90.306979},
+'mcdonnell': {lat: 38.647168, long: -90.306649},
+'monsanto': {lat: 38.647416, long: -90.307573},
+'psych': {lat: 38.647010, long: -90.307455},
+'brown': {lat: 38.647152, long: -90.305698},
+'sam_fox': {lat: 38.646661, long: -90.303401},
+'steinberg': {lat: 38.646580, long: -90.302765},
+'bixby': {lat: 38.646552, long: -90.302065},
+'mildred_lane': {lat: 38.647128, long: -90.302677},
+'green': {lat: 38.649000, long: -90.301531},
+'brauer': {lat: 38.648937, long: -90.302271},
+'whitaker': {lat: 38.649117, long: -90.303105},
+'brookings': {lat: 38.648022, long: -90.305067},
+'rebstock': {lat: 38.647625, long: -90.308021},
+'busch_lab': {lat: 38.647713, long: -90.308603},
+'life_sci': {lat: 38.647491, long: -90.308573},
+'rudolph': {lat: 38.649109, long: -90.304545},
+'crow': {lat: 38.649205, long: -90.305253},
+'sever': {lat: 38.648820, long: -90.306398},
+'lopata': {lat: 38.649094, long: -90.306170},
+'urbauer': {lat: 38.649349, long: -90.306077},
+'cupplesII': {lat: 38.649153, long: -90.306820},
+'jolley': {lat: 38.649452, long: -90.306605},
+'bryan': {lat: 38.649484, long: -90.307026},
+'louderman': {lat: 38.649253, long: -90.307758},
+'mcmillan_lab': {lat: 38.649615, long: -90.307668},
+'womens': {lat: 38.649331, long: -90.308428},
+'lab_sci': {lat: 38.649504, long: -90.309056},
+'mcmillan_hall': {lat: 38.649603, long: -90.309860}
+'bauer': {lat: 38.649527, long: -90.310687},
+'knight': 38.649638, -90.311405},
+'law': {lat: 38.649699, long: -90.312097},
+'frat': {lat: 38.649628, long: -90.313326},
+'seigle': {lat: 38.649012, long: -90.312532},
+'ac': {lat: 38.649209, long: -90.314935},
+'village': {lat: 38.650864, long: -90.313988},
+'simon': {lat: 38.648097, long: -90.311322},
+'duc': {lat: 38.647752, long: -90.310495},
+'malinkrodt': {lat: 38.647507, long: -90.309688},
+'umrath': {lat: 38.648014, long: -90.309497},
+'graham': {lat: 38.648230, long: -90.308918},
+'busch_hall': {lat: 38.647485, long: -90.305722},
+'duncker': {lat: 38.648524, long: -90.306058},
+'cupplesI': {lat: 38.648662, long: -90.305526},
+'sofo': {lat:38.644292, long: -90.314392}}
+

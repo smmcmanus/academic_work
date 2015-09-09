@@ -1,0 +1,21 @@
+Rubric 5
+Tech 40
+	MondgoDB
+		-Learn nonrelational databases
+	Javascript
+	Google Maps API	
+		Review tutorials on the API online to learn all the different features possible
+	node.js on backend
+	Express for routing
+	EJS for templating on the views
+		Explore how to embed passed in data
+Best Practices 10
+Users can register and log in 5
+Users can create events and choose a building to associate with it 5
+Users can see class schedule path mapped out 5
+Events have time associated and map is ordered by time 5
+Edit events 3
+Delete events 2
+Creative 20
+
+Total 100
