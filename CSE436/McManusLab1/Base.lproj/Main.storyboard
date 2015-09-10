@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleAspectFit" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where's WashU?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTU-LO-HIk">
+                                <rect key="frame" x="176" y="102" width="249" height="68"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="249" id="Egi-a8-M6B"/>
+                                    <constraint firstAttribute="height" constant="68" id="PAE-OT-dd9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="33"/>
+                                <color key="textColor" red="0.62786063762626265" green="0.088644971178483078" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PM6-9y-Pdq">
+                                <rect key="frame" x="276" y="466" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="SYK-em-cZC"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="switchChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="kcX-rb-ovi"/>
+                                </connections>
+                            </switch>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wustl.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="kFp-ie-aYD">
+                                <rect key="frame" x="131" y="200" width="339" height="217"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="339" id="VXC-82-X5w"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QTU-LO-HIk" firstAttribute="centerX" secondItem="kFp-ie-aYD" secondAttribute="centerX" id="0Ri-HG-ESz"/>
+                            <constraint firstItem="PM6-9y-Pdq" firstAttribute="centerX" secondItem="kFp-ie-aYD" secondAttribute="centerX" id="MeN-Q3-Ilv"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PM6-9y-Pdq" secondAttribute="bottom" constant="103" id="eQR-ND-tC3"/>
+                            <constraint firstItem="kFp-ie-aYD" firstAttribute="top" secondItem="QTU-LO-HIk" secondAttribute="bottom" constant="30" id="gax-IP-7KZ"/>
+                            <constraint firstItem="PM6-9y-Pdq" firstAttribute="top" secondItem="kFp-ie-aYD" secondAttribute="bottom" constant="49" id="vTZ-2o-2qw"/>
+                            <constraint firstItem="QTU-LO-HIk" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="82" id="wpN-ZO-6JI"/>
+                            <constraint firstItem="PM6-9y-Pdq" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="x20-aA-ney"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="wuPic" destination="kFp-ie-aYD" id="Y0l-yP-gNa"/>
+                        <outlet property="wuSwitch" destination="PM6-9y-Pdq" id="RWe-g5-CxO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="wustl.jpg" width="1440" height="900"/>
+    </resources>
+</document>
