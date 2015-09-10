@@ -1,0 +1,6 @@
+Truncate Table owner;
+ALTER TABLE owner DROP COLUMN OwnerId;
+ALTER TABLE owner ADD COlUMN sys_updated_on VARCHAR(100) AFTER sys_id, ADD COlUMN sys_updated_by VARCHAR(100) AFTER sys_id, ADD COlUMN sys_mod_count VARCHAR(100) AFTER sys_id, ADD COlUMN sys_created_on VARCHAR(100) FIRST, ADD COLUMN sys_created_by VARCHAR(100) FIRST, ADD COlUMN __status VARCHAR(100) FIRST;
+Insert Into owner Select * From tempTable;
+ALTER TABLE owner ADD COLUMN OwnerId int(10) PRIMARY KEY AUTO_INCREMENT FIRST;
+ALTER TABLE owner DROP COlUMN __status, DROP COlUMN sys_created_by, DROP COlUMN sys_created_on, DROP COlUMN sys_mod_count ,DROP COlUMN sys_updated_by, DROP COlUMN sys_updated_on;

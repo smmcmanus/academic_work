@@ -1,0 +1,6 @@
+The file 'flights.full' contains actual flight information collected
+from the EasySABRE reservation system (now Travelocity) in 1992.  Data
+was kindly provided by Roberto Tamassia.
+
+The file 'flights' contains about 1/3 of the data in flights.full and
+yields a much sparser multigraph.

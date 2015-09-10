@@ -1,0 +1,6 @@
+----- Transcript file out.txt started Fri Nov 21 12:24:35 CST 2014
+Starting airport? STL
+Ending airport? JFK
+STL
+---> JFK (TW-844, 2 hours, 32 minutes)
+Ending airport? [

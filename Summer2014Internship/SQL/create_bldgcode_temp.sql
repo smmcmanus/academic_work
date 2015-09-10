@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS tempTable;
+CREATE TABLE tempTable(__status VARCHAR(10), sys_created_by VARCHAR(32), sys_created_on VARCHAR(19), sys_id VARCHAR(32), sys_mod_count VARCHAR(100), sys_updated_by VARCHAR(32), sys_updated_on VARCHAR(19), u_bldg_code VARCHAR(50), u_bldg_name VARCHAR(32), u_short_description VARCHAR(34), u_wusm_campus VARCHAR(20));
+LOAD DATA LOCAL INFILE "output.csv" INTO TABLE tempTable COLUMNS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\r\n';

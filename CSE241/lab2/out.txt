@@ -1,0 +1,15 @@
+----- Transcript file out.txt started Tue Oct 21 13:22:26 CDT 2014
+CORPUS: 29 bases
+PATTERN: 29 bases
+MASK: 29 bases
+7 3 tacc
+7 17 tacc
+8 4 accc
+9 5 ccca
+12 10 atag
+13 11 tagg
+19 20 catt
+20 21 atta
+21 22 ttag
+25 4 accc
+----- Transcript file out.txt closed Tue Oct 21 13:22:26 CDT 2014
