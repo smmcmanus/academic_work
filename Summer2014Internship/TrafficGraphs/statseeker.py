@@ -5,6 +5,11 @@ Created on Wed Nov 13 19:52:34 2013
 
 @author: jroman
 """
+Updated Summer 2014
+
+@author smcmanus
+
+"""
 
 #>>> time.ctime(int("1284101485"))
 #'Fri Sep 10 16:51:25 2010'
