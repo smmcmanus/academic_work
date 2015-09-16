@@ -1,1 +1,1 @@
-#Python Stats Parsing Script
+Python Stats Parsing Script
